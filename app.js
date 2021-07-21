@@ -66,6 +66,14 @@ const galleryItems = [
 
 
 const gallery = document.querySelector('.js-gallery');
+const lightBox = document.querySelector('.js-lightbox');
+
+const modalImage = document.querySelector('.lightbox__image');
+const buttonClose = document.querySelector('.lightbox__button');
+const galleryImage = document.querySelector('.gallery__image');
+
+
+
 
 
 
@@ -89,3 +97,54 @@ const galleryMarkup = galleryItems.reduce(
 );
 
 gallery.insertAdjacentHTML('afterbegin', galleryMarkup);
+
+// =================TASK2================
+
+gallery.addEventListener("click", onClick);
+
+function onClick(e) {
+  if (!e.target.classList.contains("gallery__image")) {
+
+    return
+  }
+  
+  e.preventDefault();
+  lightBox.classList.add("is-open")
+  
+  modalImage.src = e.target.dataset.source;
+  modalImage.alt = e.target.alt;
+
+
+}
+
+
+// =================TASK3================
+
+
+lightBox.addEventListener("click", clickClose);
+
+function clickClose(e) {
+  if (e.target.classList.contains("lightbox__button") || e.target.classList.contains("lightbox__overlay")) {
+    lightBox.classList.remove("is-open");
+    modalImage.src = "";
+    modalImage.alt = "";
+    
+  }
+
+
+}
+
+// ==================================
+
+window.addEventListener("keydown", escFunc);
+
+function escFunc(e) {
+  if (e.code === "Escape" || e.code === "Esc") {
+    lightBox.classList.remove("is-open");
+    modalImage.src = "";
+    modalImage.alt = "";
+    
+}
+
+}
+
