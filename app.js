@@ -67,19 +67,9 @@ const galleryItems = [
 
 const gallery = document.querySelector('.js-gallery');
 const lightBox = document.querySelector('.js-lightbox');
-
 const modalImage = document.querySelector('.lightbox__image');
 const buttonClose = document.querySelector('.lightbox__button');
 const galleryImage = document.querySelector('.gallery__image');
-
-
-
-
-
-
-
-
-
 
 
 // ================TASK1==================
@@ -113,9 +103,9 @@ function onClick(e) {
   
   modalImage.src = e.target.dataset.source;
   modalImage.alt = e.target.alt;
-
-
 }
+
+
 
 
 // =================TASK3================
@@ -125,26 +115,41 @@ lightBox.addEventListener("click", clickClose);
 
 function clickClose(e) {
   if (e.target.classList.contains("lightbox__button") || e.target.classList.contains("lightbox__overlay")) {
+   
     lightBox.classList.remove("is-open");
     modalImage.src = "";
     modalImage.alt = "";
-    
   }
-
-
+  
 }
+  
+  
+  
+  
 
 // ==================================
 
 window.addEventListener("keydown", escFunc);
 
+
 function escFunc(e) {
-  if (e.code === "Escape" || e.code === "Esc") {
+  if (e.code === "Escape") {
     lightBox.classList.remove("is-open");
     modalImage.src = "";
     modalImage.alt = "";
+    console.log(escFunc);
     
+  }
 }
+// window.removeEventListener("keydown", escFunc);
 
-}
+
+
+
+
+
+
+
+
+
 
