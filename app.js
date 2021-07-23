@@ -100,6 +100,7 @@ function onClick(e) {
   
   e.preventDefault();
   lightBox.classList.add("is-open")
+  window.addEventListener("keydown", escFunc);
   
   modalImage.src = e.target.dataset.source;
   modalImage.alt = e.target.alt;
@@ -115,33 +116,36 @@ lightBox.addEventListener("click", clickClose);
 
 function clickClose(e) {
   if (e.target.classList.contains("lightbox__button") || e.target.classList.contains("lightbox__overlay")) {
+    closeFunc();
    
-    lightBox.classList.remove("is-open");
-    modalImage.src = "";
-    modalImage.alt = "";
   }
   
 }
-  
-  
-  
-  
-
-// ==================================
-
-window.addEventListener("keydown", escFunc);
 
 
-function escFunc(e) {
-  if (e.code === "Escape") {
+  function escFunc(e) {
+    if (e.code === "Escape") {
+      closeFunc();
+      console.log(e.code);
+    }
+  }
+
+
+  const closeFunc = function (){
     lightBox.classList.remove("is-open");
-    modalImage.src = "";
-    modalImage.alt = "";
-    console.log(escFunc);
+      modalImage.src = "";
+      modalImage.alt = "";
+      window.removeEventListener("keydown", escFunc);
+  
+  }
+
+
+
+
+
+
+   
     
-  }
-}
-// window.removeEventListener("keydown", escFunc);
 
 
 
